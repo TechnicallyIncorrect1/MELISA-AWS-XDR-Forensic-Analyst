@@ -1,0 +1,17 @@
+MELISA-AGENTIC-ULTIMATE-XDR/
+├── src/
+│   ├── rust/          # Forensic Collector (Memory Safe)
+│   ├── go/            # Real-Time XDR Correlator
+│   ├── java/          # Entity Graph & Pivoting
+│   ├── csharp/        # SOAR Response Engine
+│   └── ada/           # Provably-Safe Threat Validator
+├── .github/workflows/
+│   └── build-all.yml          # Pipeline multi-lenguaje
+├── config/
+│   └── aws.tf                 # Terraform para infraestructura AWS
+├── data/
+│   └── kev_catalog.json
+├── docs/
+│   └── architecture.md
+├── README.md
+└── Makefile

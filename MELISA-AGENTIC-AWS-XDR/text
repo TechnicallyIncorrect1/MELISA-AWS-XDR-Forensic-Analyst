@@ -1,0 +1,11 @@
+MELISA-AGENTIC-AWS-XDR/
+├── src/
+│   ├── melisa_aws_xdr.py          ← Archivo principal (el que te doy abajo)
+│   ├── cisa_kev.py                ← (el que ya te di antes)
+│   └── config.py
+├── data/
+│   └── kev_catalog.json           ← (el JSON que me enviaste)
+├── .github/workflows/
+│   └── deploy-aws.yml
+├── requirements.txt
+└── README.md

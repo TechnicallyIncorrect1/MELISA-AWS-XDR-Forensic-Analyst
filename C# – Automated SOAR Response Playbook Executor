@@ -1,0 +1,25 @@
+// src/SoarResponseEngine.cs
+using System;
+using Amazon.Lambda.Core;
+using Amazon.SecurityHub;
+
+public class SoarResponseEngine
+{
+    private readonly IAmazonSecurityHub _securityHub;
+
+    public SoarResponseEngine()
+    {
+        _securityHub = new AmazonSecurityHubClient();
+    }
+
+    public async Task ExecutePlaybook(string findingId)
+    {
+        Console.WriteLine($"🚨 [C#] Executing Trellix-style SOAR playbook for finding: {findingId}");
+        // Automatización completa de respuesta (isolate, quarantine, notify)
+    }
+
+    public static void Main()
+    {
+        Console.WriteLine("⚡ MELISA C# SOAR Engine Started");
+    }
+}

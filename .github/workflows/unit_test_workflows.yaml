@@ -1,0 +1,26 @@
+# Purpose: Run unit tests for the code used in workflows
+
+name: Unit Test Workflow
+
+# This is a reusable workflow called by the pipeline.
+on:
+  workflow_call:
+  workflow_dispatch:
+
+permissions: read-all
+
+jobs:
+  workflow-tests:
+    name: Workflow Unit Tests
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: powershell
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Run Invoke PSSA Pester Tests
+        run: |
+          # Source the function
+          . utils/workflow/Invoke-PesterTests.ps1
+          Invoke-PesterTests -Path 'Testing/workflow'

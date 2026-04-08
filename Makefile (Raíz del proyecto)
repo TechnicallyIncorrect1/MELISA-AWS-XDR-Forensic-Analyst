@@ -1,0 +1,39 @@
+# ================================================
+# MELISA-AGENTIC ULTIMATE XDR - Makefile
+# ================================================
+
+.PHONY: all build test deploy clean help
+
+all: build
+
+build:
+	@echo "🚀 Building MELISA Multi-Language XDR..."
+	@cd src/rust && cargo build --release
+	@cd src/go && go build -o melisa-xdr main.go
+	@echo "✅ Build completed!"
+
+test:
+	@echo "🧪 Running tests across all languages..."
+	@cd src/rust && cargo test
+	@cd src/go && go test ./...
+	@echo "✅ All tests passed!"
+
+deploy:
+	@echo "☁️  Deploying to AWS + Cloudflare..."
+	@terraform -chdir=terraform init
+	@terraform -chdir=terraform apply -auto-approve
+	@echo "🚀 MELISA deployed successfully!"
+
+clean:
+	@echo "🧹 Cleaning build artifacts..."
+	@cd src/rust && cargo clean
+	@rm -f src/go/melisa-xdr
+	@echo "✅ Clean completed!"
+
+help:
+	@echo "Available commands:"
+	@echo "  make build     - Build all languages"
+	@echo "  make test      - Run tests"
+	@echo "  make deploy    - Deploy to AWS"
+	@echo "  make clean     - Clean artifacts"
+	@echo "  make all       - Build everything"

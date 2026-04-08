@@ -1,0 +1,59 @@
+# Purpose: Run smoke tests
+
+name: Smoke Test
+
+on:
+    workflow_call:
+    workflow_dispatch:
+    pull_request:
+        types: [opened, reopened]
+        branches:
+            - "main"
+    pull_request_review:
+        types: [submitted]
+    push:
+        paths:
+            - ".github/workflows/run_smoke_test.yaml"
+            - "utils/workflow/Invoke-SmokeTests.ps1"
+            - "Testing/Functional/SmokeTest/**"
+        branches:
+            - "main"
+            - "*smoke*"
+
+permissions: read-all
+
+jobs:
+    smoke-tests:
+        name: Smoke Tests
+        runs-on: windows-latest
+        env:
+            SCUBA_GITHUB_AUTOMATION_CREDS: ${{ secrets.SCUBA_GITHUB_AUTOMATION_CREDS }}
+        # This condition prevents duplicate runs.
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
+        permissions:
+            contents: read
+        steps:
+            - name: Checkout repo code
+              uses: actions/checkout@v4
+            - name: Extract Tenants
+              id: extract-tenants
+              shell: pwsh  # -AsHashTable requires 7
+              run: |
+                # Use a hash table, as it is easy to extract data for configuring
+                # the smoke tests.
+                $Tenants = ConvertFrom-Json -InputObject $env:SCUBA_GITHUB_AUTOMATION_CREDS -AsHashTable
+                # Convert hash table to string, b/c GITHUB_OUTPUT can only accept strings
+                $TenantsAsString = ""
+                foreach ($key in $Tenants.Keys) {
+                    $TenantsAsString += "$key=$($Tenants[$key]);"
+                }
+                # Remove the trailing semicolon
+                $TenantsAsString = $TenantsAsString.TrimEnd(';')
+                echo TenantsAsString=$TenantsAsString >> $env:GITHUB_OUTPUT
+            - name: Execute tests
+              shell: powershell  # ScubaGear requires 5
+              run: |
+                $TenantsAsString = "${{ steps.extract-tenants.outputs.TenantsAsString }}"
+                $Tenants = ConvertFrom-StringData ($TenantsAsString -replace ';', "`n")
+                . utils/workflow/Invoke-SmokeTests.ps1
+                Invoke-SmokeTests -Tenants $Tenants

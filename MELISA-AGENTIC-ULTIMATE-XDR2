@@ -1,0 +1,15 @@
+MELISA-AGENTIC-ULTIMATE-XDR/
+├── src/
+│   ├── rust/          # Forensic Collector
+│   ├── go/            # Real-Time XDR Correlator
+│   ├── java/          # Entity Graph & Pivoting
+│   ├── csharp/        # SOAR Response Engine
+│   └── ada/           # Provably-Safe Threat Validator
+├── .github/workflows/
+│   └── build-all.yml
+├── terraform/
+│   └── main.tf
+├── data/
+│   └── kev_catalog.json
+├── Makefile
+└── README.md

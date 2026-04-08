@@ -1,0 +1,32 @@
+name: MELISA ULTIMATE BUILD (Rust + Go + Java + C# + Ada/SPARK)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        language: [rust, go, java, csharp]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build ${{ matrix.language }}
+        run: |
+          cd src/${{ matrix.language }}
+          if [ "${{ matrix.language }}" == "rust" ]; then
+            rustc --version && cargo build --release
+          elif [ "${{ matrix.language }}" == "go" ]; then
+            go build -o melisa-xdr
+          elif [ "${{ matrix.language }}" == "java" ]; then
+            javac *.java && jar cfe melisa.jar EntityGraphEngine *.class
+          elif [ "${{ matrix.language }}" == "csharp" ]; then
+            dotnet build
+          fi
+
+      - name: Security Scan (Trellix Style)
+        uses: github/codeql-action/analyze@v3

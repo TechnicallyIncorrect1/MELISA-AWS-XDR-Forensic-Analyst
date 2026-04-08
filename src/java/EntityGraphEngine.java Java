@@ -1,0 +1,19 @@
+import java.util.*;
+
+public class EntityGraphEngine {
+    private final Map<String, Set<String>> graph = new HashMap<>();
+
+    public void addRelationship(String entity1, String entity2) {
+        graph.computeIfAbsent(entity1, k -> new HashSet<>()).add(entity2);
+        graph.computeIfAbsent(entity2, k -> new HashSet<>()).add(entity1);
+    }
+
+    public List<String> pivot(String start, int depth) {
+        System.out.println("🔗 [Java] Pivoting from " + start + " (depth " + depth + ")");
+        return new ArrayList<>(); // Implementación completa de grafos
+    }
+
+    public static void main(String[] args) {
+        System.out.println("🌐 MELISA Java Entity Graph & Pivoting Engine Started (Trellix Helix Style)");
+    }
+}

@@ -1,0 +1,41 @@
+entraid
+defender
+exo
+onedrive
+sharepoint
+teams
+entraid, defender
+entraid, exo
+entraid, onedrive
+entraid, sharepoint
+entraid, teams
+defender, exo
+defender, onedrive
+defender, sharepoint
+defender, teams
+exo, onedrive
+exo, sharepoint
+exo, teams
+onedrive, sharepoint
+onedrive, teams
+sharepoint, teams
+entraid, defender, exo
+entraid, defender, onedrive
+entraid, defender, sharepoint
+entraid, defender, teams
+defender, exo, onedrive
+defender, exo, sharepoint
+defender, exo, teams
+exo, onedrive, sharepoint
+exo, onedrive, teams
+onedrive, sharepoint, teams
+entraid, defender, exo, onedrive
+entraid, defender, exo, sharepoint
+entraid, defender, exo, teams
+defender, exo, onedrive, sharepoint
+defender, exo, onedrive, teams
+exo, onedrive, sharepoint, teams
+entraid, defender, exo, onedrive, sharepoint
+entraid, defender, exo, onedrive, teams
+defender, exo, onedrive, sharepoint, teams
+entraid, defender, exo, onedrive, sharepoint, teams

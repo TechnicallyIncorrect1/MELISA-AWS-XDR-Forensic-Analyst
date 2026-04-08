@@ -1,0 +1,8 @@
+Description: YAML Typical Configuration File ( multiple products )
+ProductNames:
+  - teams
+  # - exo
+  # - defender
+  - entraid
+  # - sharepoint
+M365Environment: gcc

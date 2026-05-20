@@ -1,0 +1,9 @@
+﻿# monitoring/prometheus.yml
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'melisa'
+    static_configs:
+      - targets: ['melisa-xdr:8080']
+    metrics_path: '/metrics'

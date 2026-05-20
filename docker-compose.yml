@@ -1,0 +1,12 @@
+﻿version: '3.8'
+services:
+  melisa:
+    build: .
+    container_name: melisa-xdr
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs:/app/logs
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production

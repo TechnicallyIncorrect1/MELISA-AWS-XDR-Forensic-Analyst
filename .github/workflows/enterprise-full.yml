@@ -1,0 +1,24 @@
+﻿name: MELISA Enterprise Full Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 2 * * *'   # Daily at 2 AM
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: SAST + Dependency Scan
+        uses: github/codeql-action/analyze@v3
+
+  deploy-production:
+    needs: security-scan
+    runs-on: self-hosted
+    steps:
+      - name: Deploy to Production
+        run: helm upgrade --install melisa ./k8s/helm/melisa --namespace production
+      - name: Verify Deployment
+        run: kubectl rollout status deployment/melisa -n production

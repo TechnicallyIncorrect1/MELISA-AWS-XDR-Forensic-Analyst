@@ -1,0 +1,18 @@
+﻿name: Deploy to Development
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    environment: Development
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy MELISA
+        run: |
+          Write-Host "Deploying to Development environment..."
+        shell: pwsh

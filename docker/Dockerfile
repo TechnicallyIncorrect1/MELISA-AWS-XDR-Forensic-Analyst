@@ -1,14 +1,12 @@
-﻿# Multi-stage Dockerfile for MELISA
-FROM mcr.microsoft.com/powershell:7.4-windowsservercore AS base
-WORKDIR /app
-
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+﻿FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-
 COPY . .
 RUN dotnet restore
+RUN dotnet publish -c Release -o /app/publish
 
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
-COPY --from=build /src .
-CMD ["pwsh", "MELISA-Main.ps1"]
+COPY --from=build /app/publish .
+EXPOSE 8080
+ENV ASPNETCORE_URLS=http://+:8080
+ENTRYPOINT ["dotnet", "MELISA.dll"]

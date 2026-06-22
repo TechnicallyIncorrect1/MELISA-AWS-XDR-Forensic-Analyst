@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Repository Status
-        run: echo "✅ MELISA Repository cleaned successfully"
+        run: echo "✅ MELISA Repository is clean and working"

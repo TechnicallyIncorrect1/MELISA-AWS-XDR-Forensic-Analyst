@@ -7,14 +7,9 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to Development
     runs-on: ubuntu-latest
     environment: Development
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4
       - name: Deploy
-        run: |
-          echo "🚀 Deploying to Development..."
-          echo "✅ Deployment completed successfully"
+        run: echo "🚀 Deployment OK - Powered by Melissa"

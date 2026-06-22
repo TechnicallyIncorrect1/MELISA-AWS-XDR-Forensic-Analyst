@@ -16,5 +16,5 @@ jobs:
 
       - name: Deploy to Development
         run: |
-          echo "🚀 Deploying to Development environment..."
+          echo "🚀 Deploying to Development..."
           echo "✅ Deployment completed successfully"

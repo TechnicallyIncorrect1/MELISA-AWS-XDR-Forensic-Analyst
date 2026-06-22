@@ -1,4 +1,4 @@
-name: CI
+﻿name: CI
 
 on:
   push:
@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Repository Status
-        run: echo "✅ MELISA-AWS-XDR-Forensic-Analyst - Repository cleaned successfully"
+        run: echo "✅ MELISA Repository cleaned and ready"

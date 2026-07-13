@@ -6,9 +6,9 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Run PowerShell Tests
-      run: echo "✅ MELISA CI listo"
+    - name: MELISA Status
+      run: echo "✅ MELISA-AWS-XDR-Forensic-Analyst listo para ejecución"
